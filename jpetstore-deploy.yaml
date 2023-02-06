@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: jpetstore-noapm
+  name: jpetstore-noapm
+  namespace: jpetstore
+  annotations:
+    ca.broadcom.com/autoattach.enabled: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: jpetstore-noapm
+  template:
+    metadata:
+      labels:
+        name: jpetstore-noapm
+    spec:
+      containers:
+      - image: kube1:5000/a-jpetstore
+        name: jpetstore-noapm
+        env:
+        - name: CA_APM_MONITORING_ENABLED
+          value: 'true'
