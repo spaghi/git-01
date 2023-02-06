@@ -18,3 +18,17 @@ spec:
       containers:
       - image: kube1:5000/a-jpetstore
         name: jpetstore-noapm
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: jpetstore
+  name: jpetstore-noapm
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      nodePort: 32328
+      targetPort: 8080
+  selector:
+    name: jpetstore-noapm
