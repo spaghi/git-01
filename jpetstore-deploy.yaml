@@ -5,8 +5,6 @@ metadata:
     name: jpetstore-noapm
   name: jpetstore-noapm
   namespace: jpetstore
-  annotations:
-    ca.broadcom.com/autoattach.enabled: 'true'
 spec:
   replicas: 1
   selector:
@@ -20,6 +18,3 @@ spec:
       containers:
       - image: kube1:5000/a-jpetstore
         name: jpetstore-noapm
-        env:
-        - name: CA_APM_MONITORING_ENABLED
-          value: 'true'
